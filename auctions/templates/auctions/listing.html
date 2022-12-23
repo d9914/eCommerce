@@ -1,0 +1,29 @@
+{% extends "auctions/layout.html" %}
+
+{% block body %}
+    <h2>{{ listings.title }}</h2>
+    
+    
+        
+    <div>
+        <img src="{{ listings.image }}">
+    </div>
+    <div>
+        <textarea>
+            {{ listings.description }}
+        </textarea>
+    </div>
+    <div>
+        <form method="post">
+            {% csrf_token %}
+        <title>Current bit</title>
+        {% if user.is_authenticated %}
+        <input placeholder="${{ listings.price }}", type="number" name="bid">
+        <input type="submit" value="Place Bid">
+        {% endif %}
+        <h5>Current Bid: ${{ listings.price }}</h5>
+
+        </form>
+    </div>
+
+{% endblock %}
